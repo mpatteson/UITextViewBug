@@ -14,10 +14,35 @@
 
 @implementation ViewController
 
+-(void)setupTextView {
+    
+    NSString *string = theTextView.text;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.minimumLineHeight = 48.f;
+    
+    NSMutableAttributedString *aStr = [[NSMutableAttributedString alloc] initWithString:string];
+    [aStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,[string length])];
+    
+    theTextView.attributedText = aStr;
+    
+    [self showAttributesInLog];
+    
+}
+
+-(void)showAttributesInLog {
+    
+    NSLog(@"Font Attributes: %@", theTextView.attributedText);
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self setupTextView];
+    
 }
 
 - (void)didReceiveMemoryWarning
